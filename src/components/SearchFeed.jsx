@@ -9,7 +9,7 @@ const SearchFeed = () => {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    fetchFromAPI(`search?part=snippet&q=${searchTerm}`).then((data) =>
+    fetchFromAPI(`search?q=${searchTerm}&filter=all`).then((data) =>
       setVideos(data.items)
     );
   }, [searchTerm]);
@@ -19,7 +19,7 @@ const SearchFeed = () => {
       <Typography variant='h4' fontWeight='bold' mb={2} sx={{ color: "white" }}>
         Search Results For:  <span style={{ color: "#F31503" }}>{searchTerm}</span> videos
       </Typography>
-      <Videos videos={videos} />
+      <Videos videos={videos} justifyContent={"center"} />
     </Box>
   );
 };

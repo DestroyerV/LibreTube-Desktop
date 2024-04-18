@@ -1,16 +1,17 @@
 /* eslint-disable react/prop-types */
 import { Stack, Box } from "@mui/material";
-import { VideoCard, ChannelCard } from "./";
+import { VideoCard, ChannelCard, LoadingScreen } from "./";
 
-const Videos = ({ videos, direction }) => {
+const Videos = ({ videos, direction, justifyContent }) => {
   // console.log(videos)
-  if (!videos?.length) return "Loading....";
+  if (!videos?.length) return <LoadingScreen />;
   return (
     <Stack
-      direction={direction || "row"}
       flexWrap='wrap'
-      justifyContent='start'
+      justifyContent={justifyContent || "start"}
       gap={2}
+      sx={{
+        flexDirection: { xs: "row", md: direction },}}
     >
       {videos.map((item, idx) => (
         <Box key={idx}>

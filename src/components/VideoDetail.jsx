@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import ReactPlayer from "react-player";
-import { Typography, Box, Stack } from "@mui/material";
+import { Typography, Box, Stack, Avatar } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
-import { Videos } from "./";
+import { Videos, LoadingScreen } from "./";
 import { fetchFromAPI } from "../utils/fetchFromAPI";
+import { Player } from "./VideoPlayer/Player";
+import formatNumber from "../utils/formatNumber";
 
 const VideoDetail = () => {
   const [videoDetail, setVideoDetail] = useState(null);
@@ -17,39 +18,49 @@ const VideoDetail = () => {
   }, [id]);
 
   if (!videoDetail) {
-    return <div>Loading...</div>;
+    return <LoadingScreen />;
   }
 
   return (
     <Box minHeight='95vh'>
       <Stack direction={{ xs: "column", md: "row" }}>
         <Box flex={1}>
-          <Box sx={{ width: "100%", position: "sticky", top: "86px" }}>
-            <ReactPlayer
-              url={`https://www.youtube.com/watch?v=${id}`}
-              className='react-player'
-              controls
-            />
-            <Typography color='#fff' variant='h5' fontWeight='bold' p={2}>
+          <Box
+            sx={{
+              width: { sm: "100%", md: "85%" },
+              marginX: "auto",
+              borderRadius: "26px",
+              overflow: "hidden",
+            }}
+          >
+            <Player videoDetail={videoDetail} />
+          </Box>
+          <Box sx={{ width: { sm: "100%", md: "85%" }, marginX: "auto" }}>
+            <Typography color='#fff' variant='h6' fontWeight='bold' py={1}>
               {videoDetail?.title}
             </Typography>
             <Stack
               direction='row'
               justifyContent='space-between'
               sx={{ color: "#fff" }}
-              py={1}
-              px={2}
+              alignItems="center"
             >
               <Link to={`${videoDetail?.uploaderUrl}`}>
-                <Typography
-                  variant={{ sm: "subtitle1", md: "h6" }}
-                  color='#fff'
-                >
-                  {videoDetail?.uploader}
-                  <CheckCircle
-                    sx={{ fontSize: "12px", color: "gray", ml: "5px" }}
-                  />
-                </Typography>
+                <Stack direction='row' alignItems="center" gap="10px">
+                  <Avatar src={videoDetail?.uploaderAvatar} alt='avatar' />
+                    <Box sx={{ display: "flex", flexDirection: "column" }}>
+                      <Typography variant='subtitle1' color='#fff'>
+                        {videoDetail?.uploader}
+                        <CheckCircle
+                          sx={{ fontSize: "12px", color: "gray", ml: "5px" }}
+                        />
+                      </Typography>
+                      <Typography variant='subtitle2' color='gray'>
+                        {formatNumber(videoDetail?.uploaderSubscriberCount)}{" "}
+                        Subscribers
+                      </Typography>
+                    </Box>
+                </Stack>
               </Link>
               <Stack direction='row' gap='20px' alignItems='center'>
                 <Typography variant='body1' sx={{ opacity: 0.7 }}>
@@ -68,7 +79,11 @@ const VideoDetail = () => {
           justifyContent='center'
           alignItems='center'
         >
-          <Videos videos={videoDetail?.relatedStreams} direction='column' />
+          <Videos
+            videos={videoDetail?.relatedStreams}
+            direction='column'
+            justifyContent='center'
+          />
         </Box>
       </Stack>
     </Box>

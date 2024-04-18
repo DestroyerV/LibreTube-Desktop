@@ -8,8 +8,9 @@ const Feed = () => {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    fetchFromAPI(`search?q=${selectedCategory}&filter=all`)
-    .then((data) => setVideos(data.items))
+    fetchFromAPI(`search?q=${selectedCategory}&filter=all`).then((data) =>
+      setVideos(data.items)
+    );
   }, [selectedCategory]);
 
   return (

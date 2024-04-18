@@ -2,6 +2,7 @@
 import { Box, CardContent, CardMedia, Typography } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import formatNumber from "../utils/formatNumber";
 
 const ChannelCard = ({ channelDetail, marginTop }) => {
   return (
@@ -41,19 +42,23 @@ const ChannelCard = ({ channelDetail, marginTop }) => {
           />
           <Typography
             variant='h6'
-            sx={{ display: "flex", alignItems: "center" }}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
             {channelDetail?.name}
             {channelDetail?.verified && (
               <CheckCircle sx={{ fontSize: 16, color: "gray", ml: "5px" }} />
             )}
           </Typography>
-          {channelDetail?.subscribers || channelDetail?.subscriberCount && (
-            <Typography>
-              {parseInt(channelDetail?.subscribers || channelDetail?.subscriberCount).toLocaleString()}{" "}
-              Subscribers
-            </Typography>
-          )}
+          <Typography sx={{ color: "gray", fontWeight: "Bold" }}>
+            {formatNumber(
+              channelDetail?.subscribers || channelDetail?.subscriberCount
+            )}
+            Subscribers
+          </Typography>
         </CardContent>
       </Link>
     </Box>

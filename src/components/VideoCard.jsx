@@ -1,62 +1,79 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
-import { Typography, Card, CardContent, CardMedia } from "@mui/material";
-import { CheckCircle } from "@mui/icons-material";
-
 import {
-  demoThumbnailUrl,
-  demoVideoUrl,
-  demoVideoTitle,
-  demoChannelUrl,
-  demoChannelTitle,
-} from "../utils/constants";
+  Typography,
+  Card,
+  CardContent,
+  CardMedia,
+  Avatar,
+  Box,
+} from "@mui/material";
+import { CheckCircle } from "@mui/icons-material";
+import formatNumber from "../utils/formatNumber";
 
 const VideoCard = ({ video }) => {
   return (
     <Card
       sx={{
-        width: { xs: "100%", sm: "358px", md: "320px" },
+        width: { xs: "100%", sm: "358px", md: "370px" },
         boxShadow: "none",
         borderRadius: "1px",
         backgroundColor: "#161316",
       }}
     >
-      <Link to={video?.url ? `/video/${video?.url.split("=")[1]}` : demoVideoUrl}>
+      <Link to={`/video/${video?.url.split("=")[1]}`}>
         {" "}
         <CardMedia
-          image={video?.thumbnail || demoThumbnailUrl}
+          image={video?.thumbnail}
           alt={video?.title}
           sx={{
-            width: { xs: "100%", sm: "358px", md: "320px" },
-            height: 180,
+            width: { xs: "100%", sm: "358px", md: "370px" },
+            height: 215,
             borderRadius: "12px",
           }}
         />
       </Link>
-      <CardContent sx={{ backgroundColor: "#161316", height: "106px" }}>
-        <Link to={video?.url ? `/video/${video?.url}` : demoVideoUrl}>
-          <Typography
-            variant='subtitle1'
-            fontWeight='bold'
-            color='#FFF'
-            title={video?.title}
-          >
-            {video?.title.slice(0, 60) || demoVideoTitle.slice(0, 60)}
-          </Typography>
+      <CardContent
+        sx={{
+          backgroundColor: "#161316",
+          height: "106px",
+          display: "flex",
+          gap: "15px",
+        }}
+      >
+        <Link to={video?.uploaderUrl}>
+          <Box sx={{ paddingTop: "10px" }}>
+            <Avatar src={video?.uploaderAvatar} alt={video?.uploader} />
+          </Box>
         </Link>
-        <Link to={video?.uploaderUrl ? video?.uploaderUrl : demoChannelUrl}>
-          <Typography
-            variant='subtitle2'
-            fontWeight='bold'
-            color='gray'
-            sx={{ display: "flex", alignItems: "center" }}
-          >
-            {video?.uploaderName || demoChannelTitle}
-            {video?.uploaderVerified && (
-              <CheckCircle sx={{ fontSize: 14, color: "gray", ml: "5px" }} />
-            )}
-          </Typography>
-        </Link>
+        <Box>
+          <Link to={`/video/${video?.url}`}>
+            <Typography
+              variant='subtitle1'
+              fontWeight='bold'
+              color='#FFF'
+              title={video?.title}
+            >
+              {video?.title.slice(0, 60)}
+            </Typography>
+          </Link>
+          <Link to={video?.uploaderUrl}>
+            <Typography
+              variant='subtitle2'
+              fontWeight='bold'
+              color='gray'
+              sx={{ display: "flex", alignItems: "center" }}
+            >
+              {video?.uploaderName}
+              {video?.uploaderVerified && (
+                <CheckCircle sx={{ fontSize: 14, color: "gray", ml: "5px" }} />
+              )}
+            </Typography>
+            <Typography variant='subtitle2' fontWeight='bold' color='gray'>
+              {formatNumber(video?.views)} views • {video?.uploadedDate}
+            </Typography>
+          </Link>
+        </Box>
       </CardContent>
     </Card>
   );
