@@ -30,6 +30,7 @@ const ChannelDetail = () => {
       <Box p={2} display='flex'>
         <Videos
           videos={channelDetail?.relatedStreams}
+          avatarUrl={channelDetail?.avatarUrl}
           justifyContent={"center"}
         />
       </Box>

@@ -11,7 +11,7 @@ import {
 import { CheckCircle } from "@mui/icons-material";
 import formatNumber from "../utils/formatNumber";
 
-const VideoCard = ({ video }) => {
+const VideoCard = ({ video, avatarUrl }) => {
   return (
     <Card
       sx={{
@@ -43,7 +43,7 @@ const VideoCard = ({ video }) => {
       >
         <Link to={video?.uploaderUrl}>
           <Box sx={{ paddingTop: "10px" }}>
-            <Avatar src={video?.uploaderAvatar} alt={video?.uploader} />
+            <Avatar src={video?.uploaderAvatar || avatarUrl} alt={video?.uploader} />
           </Box>
         </Link>
         <Box>

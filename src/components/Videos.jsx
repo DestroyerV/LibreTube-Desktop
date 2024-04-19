@@ -2,7 +2,7 @@
 import { Stack, Box } from "@mui/material";
 import { VideoCard, ChannelCard, LoadingScreen } from "./";
 
-const Videos = ({ videos, direction, justifyContent }) => {
+const Videos = ({ videos, direction, justifyContent, avatarUrl }) => {
   // console.log(videos)
   if (!videos?.length) return <LoadingScreen />;
   return (
@@ -11,11 +11,14 @@ const Videos = ({ videos, direction, justifyContent }) => {
       justifyContent={justifyContent || "start"}
       gap={2}
       sx={{
-        flexDirection: { xs: "row", md: direction },}}
+        flexDirection: { xs: "row", md: direction },
+      }}
     >
       {videos.map((item, idx) => (
         <Box key={idx}>
-          {item.type === "stream" && <VideoCard video={item} />}
+          {item.type === "stream" && (
+            <VideoCard video={item} avatarUrl={avatarUrl} />
+          )}
           {item.type === "channel" && <ChannelCard channelDetail={item} />}
         </Box>
       ))}
