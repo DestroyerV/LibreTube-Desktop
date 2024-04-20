@@ -1,4 +1,4 @@
-import HomeIcon from "@mui/icons-material/Home";
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import MusicNoteIcon from "@mui/icons-material/MusicNote";
 import CodeIcon from "@mui/icons-material/Code";
 import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
@@ -15,7 +15,7 @@ import DeveloperModeIcon from "@mui/icons-material/DeveloperMode";
 export const logo = "https://i.ibb.co/s9Qys2j/logo.png";
 
 export const categories = [
-  { name: "Trending", icon: <HomeIcon /> },
+  { name: "Trending", icon: <TrendingUpIcon /> },
   { name: "Coding", icon: <CodeIcon /> },
   { name: "Music", icon: <MusicNoteIcon /> },
   { name: "Education", icon: <SchoolIcon /> },

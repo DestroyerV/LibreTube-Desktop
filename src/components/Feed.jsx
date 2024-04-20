@@ -8,9 +8,13 @@ const Feed = () => {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    fetchFromAPI(`search?q=${selectedCategory}&filter=all`).then((data) =>
-      setVideos(data.items)
-    );
+    if (selectedCategory === "Trending") {
+      fetchFromAPI("trending").then((data) => setVideos(data));
+    } else {
+      fetchFromAPI(`search?q=${selectedCategory}&filter=all`).then((data) =>
+        setVideos(data.items)
+      );
+    }
   }, [selectedCategory]);
 
   return (
