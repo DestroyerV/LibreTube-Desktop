@@ -31,7 +31,7 @@ const Feed = () => {
           setSelectedCategory={setSelectedCategory}
         />
       </Box>
-      <Box p={2} sx={{ overflowY: "auto", height: "90vh", flex: 2 }}>
+      <Box p={2} sx={{ overflowY: "auto", height: "86vh", flex: 2 }}>
         <Typography
           variant='h4'
           fontWeight='bold'
