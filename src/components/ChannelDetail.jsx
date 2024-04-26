@@ -15,7 +15,7 @@ const ChannelDetail = () => {
     return <LoadingScreen />;
   }
   return (
-    <Box minHeight='95vh' p={2}>
+    <Box p={2} sx={{overflowY: "auto", height: "90vh"}} >
       <Box>
         <div
           style={{

@@ -7,9 +7,11 @@ import {
   CardMedia,
   Avatar,
   Box,
+  Chip,
 } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
 import formatNumber from "../utils/formatNumber";
+import  formatTime  from "../utils/formatTime";
 
 const VideoCard = ({ video, avatarUrl }) => {
   return (
@@ -19,6 +21,7 @@ const VideoCard = ({ video, avatarUrl }) => {
         boxShadow: "none",
         borderRadius: "1px",
         backgroundColor: "#161316",
+        position: "relative",
       }}
     >
       <Link to={`/video/${video?.url.split("=")[1]}`}>
@@ -32,6 +35,19 @@ const VideoCard = ({ video, avatarUrl }) => {
             borderRadius: "12px",
           }}
         />
+        <Chip
+          label={formatTime(video?.duration)}
+          size='small'
+          sx={{
+            color: "white",
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
+            position: "absolute",
+            top: "50%",
+            right: "10px",
+            borderRadius: "6px",
+            fontWeight: "500"
+          }}
+        />
       </Link>
       <CardContent
         sx={{
@@ -43,7 +59,10 @@ const VideoCard = ({ video, avatarUrl }) => {
       >
         <Link to={video?.uploaderUrl}>
           <Box sx={{ paddingTop: "10px" }}>
-            <Avatar src={video?.uploaderAvatar || avatarUrl} alt={video?.uploader} />
+            <Avatar
+              src={video?.uploaderAvatar || avatarUrl}
+              alt={video?.uploader}
+            />
           </Box>
         </Link>
         <Box>

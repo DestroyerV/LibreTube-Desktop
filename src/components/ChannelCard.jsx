@@ -42,13 +42,14 @@ const ChannelCard = ({ channelDetail, marginTop }) => {
           />
           <Typography
             variant='h6'
+            title={channelDetail?.name}
             sx={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
             }}
           >
-            {channelDetail?.name}
+            {channelDetail?.name.slice(0, 20)}
             {channelDetail?.verified && (
               <CheckCircle sx={{ fontSize: 16, color: "gray", ml: "5px" }} />
             )}
@@ -56,7 +57,7 @@ const ChannelCard = ({ channelDetail, marginTop }) => {
           <Typography sx={{ color: "gray", fontWeight: "Bold" }}>
             {formatNumber(
               channelDetail?.subscribers || channelDetail?.subscriberCount
-            )}
+            )}{" "}
             Subscribers
           </Typography>
         </CardContent>
