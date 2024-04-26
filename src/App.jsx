@@ -50,7 +50,7 @@ function App() {
 
   return (
     <>
-      <Box sx={{ backgroundColor: "#161316", height: "100vh", overflow: "hidden" }}>
+      <Box sx={{ backgroundColor: "#161316", height: "100vh", overflow:{md: "hidden" }}}>
         <RouterProvider router={routes} />
       </Box>
     </>
