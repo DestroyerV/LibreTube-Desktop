@@ -13,13 +13,13 @@ const SearchFeed = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetchFromAPI(`search?q=${searchTerm}&filter=${filter}`).then((data) =>
-      setVideos(data)
-    );
-    setLoading(false)
+    fetchFromAPI(`search?q=${searchTerm}&filter=${filter}`)
+      .then((data) => setVideos(data))
+      .catch((error) => console.error("Error fetching data:", error))
+      .finally(() => setLoading(false));
   }, [searchTerm, filter]);
 
-  const fetchMoreData = () => {
+  const fetchMoreData = (setLoading) => {
     if (!videos?.nextpage) {
       return;
     }
@@ -39,10 +39,15 @@ const SearchFeed = () => {
       })
       .catch((error) => {
         console.error("Error fetching more data:", error);
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
-  const [loading, setLoading] = useInfiniteScroll(fetchMoreData, videos, scroll);
+  const [loading, setLoading] = useInfiniteScroll(
+    fetchMoreData,
+    videos,
+    scroll
+  );
 
   const filterButtons = [
     { name: "All", filter: "all" },
