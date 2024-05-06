@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Typography, Box, Stack, Avatar } from "@mui/material";
+import { Typography, Box, Stack, Avatar, Skeleton } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
-import { Videos, LoadingScreen } from "./";
+import { Videos } from "./";
 import { fetchFromAPI } from "../utils/fetchFromAPI";
 import { Player } from "./VideoPlayer/Player";
 import formatNumber from "../utils/formatNumber";
@@ -17,37 +17,66 @@ const VideoDetail = () => {
       .catch((error) => console.error(error));
   }, [id]);
 
-  if (!videoDetail) {
-    return <LoadingScreen />;
-  }
-
   return (
     <Box minHeight='95vh'>
-      <Stack direction={{ xs: "column", md: "row" }} sx={{overflowY: "auto", height: "90vh"}}>
+      <Stack
+        direction={{ xs: "column", md: "row" }}
+        sx={{ overflowY: "auto", height: "90vh" }}
+      >
         <Box flex={1}>
           <Box
             sx={{
-              width: { sm: "100%", md: "85%" },
+              width: { xs: "95%", md: "85%" },
               marginX: "auto",
               borderRadius: "26px",
               overflow: "hidden",
+              // paddingX : {xs : "5px", md : "0px"},
             }}
           >
-            <Player videoDetail={videoDetail} />
+            {!videoDetail ? (
+              <Skeleton
+                animation='wave'
+                variant='rounded'
+                width='100%'
+                sx={{
+                  bgcolor: "#3A3939",
+                  height: { xs: "200px", sm: "400px", md: "500px" },
+                }}
+              />
+            ) : (
+              <Player videoDetail={videoDetail} />
+            )}
           </Box>
-          <Box sx={{ width: { sm: "100%", md: "85%" }, marginX: "auto" }}>
-            <Typography color='#fff' variant='h6' fontWeight='bold' py={1}>
-              {videoDetail?.title}
+          <Box sx={{ width: { xs: "95%", md: "85%" }, marginX: "auto" }}>
+            <Typography color='#fff' fontWeight='bold' py={1} sx={{fontSize: {xs : "16px", sm : "18px", md : "20px"}}}>
+              {!videoDetail ? (
+                <Skeleton
+                  animation='wave'
+                  variant='text'
+                  sx={{ bgcolor: "#3A3939" }}
+                />
+              ) : (
+                videoDetail?.title
+              )}
             </Typography>
             <Stack
               direction='row'
               justifyContent='space-between'
               sx={{ color: "#fff" }}
-              alignItems="center"
+              alignItems='center'
             >
-              <Link to={`${videoDetail?.uploaderUrl}`}>
-                <Stack direction='row' alignItems="center" gap="10px">
-                  <Avatar src={videoDetail?.uploaderAvatar} alt='avatar' />
+              {!videoDetail ? (
+                <Skeleton
+                  animation='wave'
+                  variant='circular'
+                  width={40}
+                  height={40}
+                  sx={{ bgcolor: "#3A3939" }}
+                />
+              ) : (
+                <Link to={`${videoDetail?.uploaderUrl}`}>
+                  <Stack direction='row' alignItems='center' gap='10px'>
+                    <Avatar src={videoDetail?.uploaderAvatar} alt='avatar' />
                     <Box sx={{ display: "flex", flexDirection: "column" }}>
                       <Typography variant='subtitle1' color='#fff'>
                         {videoDetail?.uploader}
@@ -60,14 +89,33 @@ const VideoDetail = () => {
                         Subscribers
                       </Typography>
                     </Box>
-                </Stack>
-              </Link>
+                  </Stack>
+                </Link>
+              )}
               <Stack direction='row' gap='20px' alignItems='center'>
-                <Typography variant='body1' sx={{ opacity: 0.7 }}>
-                  {parseInt(videoDetail?.views).toLocaleString()} views
+                <Typography variant='body2' sx={{ opacity: 0.7 }}>
+                  {!videoDetail ? (
+                    <Skeleton
+                      animation='wave'
+                      variant='text'
+                      width={80}
+                      sx={{ bgcolor: "#3A3939" }}
+                    />
+                  ) : (
+                    formatNumber(videoDetail?.views) + " views"
+                  )}
                 </Typography>
-                <Typography variant='body1' sx={{ opacity: 0.7 }}>
-                  {parseInt(videoDetail?.likes).toLocaleString()} likes
+                <Typography variant='body2' sx={{ opacity: 0.7 }}>
+                  {!videoDetail ? (
+                    <Skeleton
+                      animation='wave'
+                      variant='text'
+                      width={80}
+                      sx={{ bgcolor: "#3A3939" }}
+                    />
+                  ) : (
+                    formatNumber(videoDetail?.likes) + " likes"
+                  )}
                 </Typography>
               </Stack>
             </Stack>

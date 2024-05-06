@@ -1,10 +1,8 @@
 /* eslint-disable react/prop-types */
 import { Stack, Box } from "@mui/material";
-import { VideoCard, ChannelCard, LoadingScreen } from "./";
+import { VideoCard, ChannelCard } from "./";
 
 const Videos = ({ videos, direction, justifyContent, avatarUrl }) => {
-  // console.log(videos)
-  if (!videos?.length) return <LoadingScreen />;
   return (
     <Stack
       flexWrap='wrap'
@@ -14,14 +12,22 @@ const Videos = ({ videos, direction, justifyContent, avatarUrl }) => {
         flexDirection: { xs: "row", md: direction },
       }}
     >
-      {videos.map((item, idx) => (
-        <Box key={idx}>
-          {item.type === "stream" && (
-            <VideoCard video={item} avatarUrl={avatarUrl} />
-          )}
-          {item.type === "channel" && <ChannelCard channelDetail={item} />}
-        </Box>
-      ))}
+      {videos?.length
+        ? videos.map((item, idx) => (
+            <Box key={idx}>
+              {item.type === "stream" && (
+                <VideoCard video={item} avatarUrl={avatarUrl} />
+              )}
+              {item.type === "channel" && <ChannelCard channelDetail={item} />}
+            </Box>
+          ))
+        : Array(10)
+            .fill(0)
+            .map((item, idx) => (
+              <Box key={idx}>
+                <VideoCard video={item} />
+              </Box>
+            ))}
     </Stack>
   );
 };

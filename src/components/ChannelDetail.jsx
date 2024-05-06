@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Box } from "@mui/material";
-import { Videos, ChannelCard, LoadingScreen } from "./";
+import { Box, Skeleton } from "@mui/material";
+import { Videos, ChannelCard } from "./";
 import { fetchFromAPI } from "../utils/fetchFromAPI";
 
 const ChannelDetail = () => {
@@ -11,20 +11,32 @@ const ChannelDetail = () => {
   useEffect(() => {
     fetchFromAPI(`channel/${id}`).then((data) => setChannelDetail(data));
   }, [id]);
-  if (!channelDetail) {
-    return <LoadingScreen />;
-  }
+
+  // if (!channelDetail) {
+  //   return <LoadingScreen />;
+  // }
+
   return (
-    <Box p={2} sx={{overflowY: "auto", height: "90vh"}} >
+    <Box p={2} sx={{ overflowY: "auto", height: "90vh" }}>
       <Box>
-        <div
-          style={{
-            backgroundImage: `url(${channelDetail?.bannerUrl})`,
-            zIndex: 10,
-            height: "300px",
-            borderRadius: "12px",
-          }}
-        />
+        {!channelDetail ? (
+          <Skeleton
+            animation='wave'
+            variant='rounded'
+            width='100%'
+            height={300}
+            sx={{ bgcolor: "#3A3939", borderRadius: "12px" }}
+          />
+        ) : (
+          <div
+            style={{
+              backgroundImage: `url(${channelDetail?.bannerUrl})`,
+              zIndex: 10,
+              height: "300px",
+              borderRadius: "12px",
+            }}
+          />
+        )}
         <ChannelCard channelDetail={channelDetail} marginTop='-110px' />
       </Box>
       <Box p={2} display='flex'>
