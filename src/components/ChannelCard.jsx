@@ -1,5 +1,11 @@
 /* eslint-disable react/prop-types */
-import { Box, CardContent, CardMedia, Typography } from "@mui/material";
+import {
+  Box,
+  CardContent,
+  CardMedia,
+  Typography,
+  Skeleton,
+} from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import formatNumber from "../utils/formatNumber";
@@ -19,49 +25,72 @@ const ChannelCard = ({ channelDetail, marginTop }) => {
         marginTop: marginTop,
       }}
     >
-      <Link to={channelDetail?.url}>
-        <CardContent
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            textAlign: "center",
-            color: "#fff",
-          }}
-        >
-          <CardMedia
-            image={channelDetail?.thumbnail || channelDetail?.avatarUrl}
-            alt={channelDetail?.name}
-            sx={{
-              borderRadius: "50%",
-              height: "180px",
-              width: "180px",
-              mb: 2,
-              border: "1px solid #e3e3e3",
-            }}
+      {!channelDetail ? (
+        <div>
+          <Skeleton
+            animation='wave'
+            variant='circular'
+            width={180}
+            height={180}
+            sx={{ bgcolor: "#3A3939" }}
           />
-          <Typography
-            variant='h6'
-            title={channelDetail?.name}
+
+          <Skeleton
+            animation='wave'
+            variant='text'
+            sx={{ bgcolor: "#3A3939" }}
+          />
+          <Skeleton
+            animation='wave'
+            variant='text'
+            sx={{ bgcolor: "#3A3939" }}
+          />
+        </div>
+      ) : (
+        <Link to={channelDetail?.url}>
+          <CardContent
             sx={{
               display: "flex",
-              alignItems: "center",
+              flexDirection: "column",
               justifyContent: "center",
+              textAlign: "center",
+              color: "#fff",
             }}
           >
-            {channelDetail?.name.slice(0, 20)}
-            {channelDetail?.verified && (
-              <CheckCircle sx={{ fontSize: 16, color: "gray", ml: "5px" }} />
-            )}
-          </Typography>
-          <Typography sx={{ color: "gray", fontWeight: "Bold" }}>
-            {formatNumber(
-              channelDetail?.subscribers || channelDetail?.subscriberCount
-            )}{" "}
-            Subscribers
-          </Typography>
-        </CardContent>
-      </Link>
+            <CardMedia
+              image={channelDetail?.thumbnail || channelDetail?.avatarUrl}
+              alt={channelDetail?.name}
+              sx={{
+                borderRadius: "50%",
+                height: "180px",
+                width: "180px",
+                mb: 2,
+                border: "1px solid #e3e3e3",
+              }}
+            />
+            <Typography
+              variant='h6'
+              title={channelDetail?.name}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              {channelDetail?.name.slice(0, 20)}
+              {channelDetail?.verified && (
+                <CheckCircle sx={{ fontSize: 16, color: "gray", ml: "5px" }} />
+              )}
+            </Typography>
+            <Typography sx={{ color: "gray", fontWeight: "Bold" }}>
+              {formatNumber(
+                channelDetail?.subscribers || channelDetail?.subscriberCount
+              )}{" "}
+              Subscribers
+            </Typography>
+          </CardContent>
+        </Link>
+      )}
     </Box>
   );
 };
