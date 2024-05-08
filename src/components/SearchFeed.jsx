@@ -1,18 +1,21 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { Box, Typography, Stack, Button } from "@mui/material";
 import { Videos } from "./";
-import { fetchFromAPI } from "../utils/fetchFromAPI";
+import { fetchFromAPI } from "../services/fetchFromAPI";
 import { useParams } from "react-router-dom";
 import useInfiniteScroll from "../hooks/useInfiniteScroll";
+import { MyContext } from "../App";
 
 const SearchFeed = () => {
   const { searchTerm } = useParams();
   const [videos, setVideos] = useState([]);
   const [filter, setFilter] = useState("all");
   const scroll = useRef(null);
+  const {setProgress} = useContext(MyContext)
 
   useEffect(() => {
     setLoading(true);
+    setProgress(0)
     fetchFromAPI(`search?q=${searchTerm}&filter=${filter}`)
       .then((data) => setVideos(data))
       .catch((error) => console.error("Error fetching data:", error))

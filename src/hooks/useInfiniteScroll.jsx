@@ -1,7 +1,8 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useEffect, useCallback, useRef, useContext } from "react";
+import { MyContext } from "../App";
 
 const useInfiniteScroll = (fetchMoreData, videos, scroll) => {
-  const [loading, setLoading] = useState(false);
+  const { loading, setLoading, setProgress } = useContext(MyContext);
   const debounceTimer = useRef();
 
   const handleScroll = useCallback(() => {
@@ -14,6 +15,7 @@ const useInfiniteScroll = (fetchMoreData, videos, scroll) => {
     ) {
       if (!loading) {
         setLoading(true);
+        setProgress(0);
         if (debounceTimer.current) {
           clearTimeout(debounceTimer.current);
         }
