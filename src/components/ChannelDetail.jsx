@@ -1,20 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Box, Skeleton } from "@mui/material";
 import { Videos, ChannelCard } from "./";
-import { fetchFromAPI } from "../utils/fetchFromAPI";
+import { fetchFromAPI } from "../services/fetchFromAPI";
+import { MyContext } from "../App";
 
 const ChannelDetail = () => {
   const { id } = useParams();
   const [channelDetail, setChannelDetail] = useState(null);
+  const { setLoading, setProgress } = useContext(MyContext);
 
   useEffect(() => {
-    fetchFromAPI(`channel/${id}`).then((data) => setChannelDetail(data));
+    setLoading(true);
+    setProgress(0);
+    fetchFromAPI(`channel/${id}`)
+      .then((data) => setChannelDetail(data))
+      .catch((error) => console.log(error))
+      .finally(() => setLoading(false));
   }, [id]);
-
-  // if (!channelDetail) {
-  //   return <LoadingScreen />;
-  // }
 
   return (
     <Box p={2} sx={{ overflowY: "auto", height: "90vh" }}>

@@ -1,20 +1,25 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Typography, Box, Stack, Avatar, Skeleton } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
 import { Videos } from "./";
-import { fetchFromAPI } from "../utils/fetchFromAPI";
+import { fetchFromAPI } from "../services/fetchFromAPI";
 import { Player } from "./VideoPlayer/Player";
 import formatNumber from "../utils/formatNumber";
+import { MyContext } from "../App";
 
 const VideoDetail = () => {
   const [videoDetail, setVideoDetail] = useState(null);
   const { id } = useParams();
+  const { setLoading, setProgress } = useContext(MyContext);
 
   useEffect(() => {
+    setLoading(true);
+    setProgress(0);
     fetchFromAPI(`streams/${id}`)
       .then((data) => setVideoDetail(data))
-      .catch((error) => console.error(error));
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
   }, [id]);
 
   return (
@@ -48,7 +53,12 @@ const VideoDetail = () => {
             )}
           </Box>
           <Box sx={{ width: { xs: "95%", md: "85%" }, marginX: "auto" }}>
-            <Typography color='#fff' fontWeight='bold' py={1} sx={{fontSize: {xs : "16px", sm : "18px", md : "20px"}}}>
+            <Typography
+              color='#fff'
+              fontWeight='bold'
+              py={1}
+              sx={{ fontSize: { xs: "16px", sm: "18px", md: "20px" } }}
+            >
               {!videoDetail ? (
                 <Skeleton
                   animation='wave'

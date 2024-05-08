@@ -65,6 +65,14 @@ a {
   transition: all 0.3s ease;
 }
 
+.MuiLinearProgress-colorPrimary {
+  background-color: #4e454e !important;
+}
+
+.MuiLinearProgress-bar {
+  background-color: #e34c6a !important;
+}
+
 @media screen and (max-width: 900px) {
   .category-btn {
     margin: 10px;
