@@ -8,6 +8,8 @@ import {
   VideoDetail,
 } from "./components";
 import { createContext, useState } from "react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
+import { Analytics } from "@vercel/analytics/react";
 
 export const MyContext = createContext({});
 export function App() {
@@ -77,6 +79,8 @@ export function App() {
             )}
           </Box>
           <RouterProvider router={routes} />
+          <Analytics />
+          <SpeedInsights />
         </Box>
       </>
     </MyContext.Provider>
