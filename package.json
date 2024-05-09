@@ -14,6 +14,8 @@
     "@emotion/styled": "^11.11.5",
     "@mui/icons-material": "^5.15.15",
     "@mui/material": "^5.15.15",
+    "@vercel/analytics": "^1.2.2",
+    "@vercel/speed-insights": "^1.0.10",
     "@vidstack/react": "^1.11.17",
     "axios": "^1.6.8",
     "hls.js": "^1.5.8",
