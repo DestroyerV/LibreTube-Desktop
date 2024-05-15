@@ -6,6 +6,7 @@ import {
   Navbar,
   SearchFeed,
   VideoDetail,
+  Page404,
 } from "./components";
 import { createContext, useState } from "react";
 
@@ -50,6 +51,15 @@ export function App() {
         <>
           <Navbar />
           <SearchFeed />,
+        </>
+      ),
+    },
+    {
+      path: "*",
+      element: (
+        <>
+          <Navbar />
+          <Page404 />
         </>
       ),
     },
