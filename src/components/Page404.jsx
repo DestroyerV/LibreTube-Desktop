@@ -1,14 +1,17 @@
 import { Box, Stack, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import astronut from "../assets/GroupAstronut.svg";
-import blur from "../assets/Ellipse 33bg-blur.png";
 const Page404 = () => {
   return (
     <Stack
       direction='column'
       justifyContent='center'
       alignItems='center'
-      sx={{ height: { xs: "85vh", md: "90vh" }, flexDirection: { md: "row" } }}>
+      sx={{
+        height: { xs: "85vh", md: "90vh" },
+        flexDirection: { md: "row" },
+        gap: "10%",
+      }}>
       <Box sx={{ textAlign: "center", lineHeight: "6" }}>
         <Typography
           color='gray'
@@ -33,9 +36,9 @@ const Page404 = () => {
           justifyContent: "center",
           alignItems: "center",
           position: "relative",
-          transform: { md: "translateY(-40px)" },
+          transform: { md: "translateY(-20px)" },
         }}>
-        <img className='blur' src={blur} alt='blur' />
+        <div className='gradient'></div>
         <img className='astronut' src={astronut} alt='astronut' />
       </Box>
     </Stack>

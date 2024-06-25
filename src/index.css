@@ -77,9 +77,13 @@ a {
   position: absolute;
 }
 
-.blur {
-  width: 600px;
-  height: 600px;
+.gradient {
+  width: 250px;
+  height: 250px;
+  background: linear-gradient(180deg, blue, pink);
+  border-radius: 80% 0%;
+  box-shadow: 0 0 40px rgb(97, 4, 247);
+  filter: blur(30px);
 }
 
 @media screen and (max-width: 900px) {
@@ -92,11 +96,10 @@ a {
   .copyright {
     display: none !important;
   }
-  
 
-  .blur {
-    width: 400px;
-    height: 400px;
+  .gradient {
+    width: 200px;
+    height: 200px;
   }
 
   .astronut {
@@ -116,11 +119,10 @@ a {
   .search-bar {
     width: 200px;
   }
-  
 
-  .blur {
-    width: 300px;
-    height: 300px;
+  .gradient {
+    width: 150px;
+    height: 150px;
   }
 
   .astronut {
