@@ -24,8 +24,7 @@ const VideoCard = ({ video, avatarUrl }) => {
         borderRadius: "1px",
         backgroundColor: "#161316",
         position: "relative",
-      }}
-    >
+      }}>
       {!video ? (
         <Skeleton
           animation='wave'
@@ -45,6 +44,7 @@ const VideoCard = ({ video, avatarUrl }) => {
               height: 215,
               borderRadius: "12px",
             }}
+            loading='lazy'
           />
           <Chip
             label={formatTime(video?.duration)}
@@ -67,8 +67,7 @@ const VideoCard = ({ video, avatarUrl }) => {
           height: "106px",
           display: "flex",
           gap: "15px",
-        }}
-      >
+        }}>
         {!video ? (
           <Skeleton
             animation='wave'
@@ -108,8 +107,7 @@ const VideoCard = ({ video, avatarUrl }) => {
                   variant='subtitle1'
                   fontWeight='bold'
                   color='#FFF'
-                  title={video?.title}
-                >
+                  title={video?.title}>
                   {video?.title.slice(0, 60)}
                 </Typography>
               </Link>
@@ -118,8 +116,7 @@ const VideoCard = ({ video, avatarUrl }) => {
                   variant='subtitle2'
                   fontWeight='bold'
                   color='gray'
-                  sx={{ display: "flex", alignItems: "center" }}
-                >
+                  sx={{ display: "flex", alignItems: "center" }}>
                   {video?.uploaderName}
                   {video?.uploaderVerified && (
                     <CheckCircle
