@@ -18,7 +18,7 @@
     "@vercel/speed-insights": "^1.0.10",
     "@vidstack/react": "^1.11.25",
     "axios": "^1.6.8",
-    "hls.js": "^1.5.8",
+    "hls.js": "^1.5.13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.24.1"
