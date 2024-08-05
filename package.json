@@ -12,11 +12,11 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
-    "@mui/icons-material": "^5.16.4",
+    "@mui/icons-material": "^5.16.5",
     "@mui/material": "^5.16.0",
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
-    "@vidstack/react": "^1.11.29",
+    "@vidstack/react": "^1.11.30",
     "axios": "^1.6.8",
     "hls.js": "^1.5.13",
     "react": "^18.2.0",
@@ -30,7 +30,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.8",
+    "eslint-plugin-react-refresh": "^0.4.9",
     "vite": "^5.3.3",
     "vite-plugin-env-compatible": "^2.0.1"
   }
