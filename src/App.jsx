@@ -9,7 +9,7 @@ import {
   Page404,
 } from "./components";
 import { createContext, useState } from "react";
-import theme from "./theme";
+import theme from "../theme";
 
 export const MyContext = createContext({});
 export function App() {
