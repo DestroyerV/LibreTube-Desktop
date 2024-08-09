@@ -4,6 +4,7 @@ import { Box, Skeleton } from "@mui/material";
 import { Videos, ChannelCard } from "./";
 import { fetchFromAPI } from "../services/fetchFromAPI";
 import { MyContext } from "../App";
+import theme from "../../theme";
 
 const ChannelDetail = () => {
   const { id } = useParams();
@@ -28,7 +29,10 @@ const ChannelDetail = () => {
             variant='rounded'
             width='100%'
             height={300}
-            sx={{ bgcolor: "#3A3939", borderRadius: "12px" }}
+            sx={{
+              bgcolor: theme.palette.background.light,
+              borderRadius: "12px",
+            }}
           />
         ) : (
           <div

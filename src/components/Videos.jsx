@@ -10,8 +10,7 @@ const Videos = ({ videos, direction, justifyContent, avatarUrl }) => {
       gap={2}
       sx={{
         flexDirection: { xs: "row", md: direction },
-      }}
-    >
+      }}>
       {videos?.length
         ? videos.map((item, idx) => (
             <Box key={idx}>

@@ -5,17 +5,19 @@ import { fetchFromAPI } from "../services/fetchFromAPI";
 import { useParams } from "react-router-dom";
 import useInfiniteScroll from "../hooks/useInfiniteScroll";
 import { MyContext } from "../App";
+import theme from "../../theme";
+import { filterButtons } from "../utils/constants";
 
 const SearchFeed = () => {
   const { searchTerm } = useParams();
   const [videos, setVideos] = useState([]);
   const [filter, setFilter] = useState("all");
   const scroll = useRef(null);
-  const {setProgress} = useContext(MyContext)
+  const { setProgress } = useContext(MyContext);
 
   useEffect(() => {
     setLoading(true);
-    setProgress(0)
+    setProgress(0);
     fetchFromAPI(`search?q=${searchTerm}&filter=${filter}`)
       .then((data) => setVideos(data))
       .catch((error) => console.error("Error fetching data:", error))
@@ -52,17 +54,6 @@ const SearchFeed = () => {
     scroll
   );
 
-  const filterButtons = [
-    { name: "All", filter: "all" },
-    { name: "Videos", filter: "videos" },
-    { name: "Channels", filter: "channels" },
-    // { name: "Playlists", filter: "playlists" },
-    // { name: "YT Music Songs", filter: "music_songs" },
-    { name: "YT Music Videos", filter: "music_videos" },
-    // { name: "YT Music Playlists", filter: "yt-music-playlists" },
-    // { name: "YT Music Artists", filter: "music_artists" },
-  ];
-
   return (
     <Box p={2} sx={{ overflowY: "auto", height: "90vh", flex: 2 }} ref={scroll}>
       <Stack
@@ -72,8 +63,7 @@ const SearchFeed = () => {
         alignItems='center'
         mb={2}
         pb={2}
-        sx={{ overflowX: "auto" }}
-      >
+        sx={{ overflowX: "auto" }}>
         <Typography variant='h6' fontWeight='bold' sx={{ color: "white" }}>
           Filters:{" "}
         </Typography>
@@ -96,10 +86,9 @@ const SearchFeed = () => {
                 whiteSpace: "nowrap",
                 backgroundColor:
                   button.filter === filter
-                    ? "#ff7691"
+                    ? theme.palette.primary.main
                     : "rgba(255, 255, 255, 0.2)",
-              }}
-            >
+              }}>
               {button?.name}
             </Button>
           ))}

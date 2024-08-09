@@ -9,6 +9,7 @@ import {
 import { CheckCircle } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import formatNumber from "../utils/formatNumber";
+import theme from "../../theme";
 
 const ChannelCard = ({ channelDetail, marginTop }) => {
   return (
@@ -23,8 +24,7 @@ const ChannelCard = ({ channelDetail, marginTop }) => {
         height: "326px",
         margin: "auto",
         marginTop: marginTop,
-      }}
-    >
+      }}>
       {!channelDetail ? (
         <div>
           <Skeleton
@@ -32,18 +32,18 @@ const ChannelCard = ({ channelDetail, marginTop }) => {
             variant='circular'
             width={180}
             height={180}
-            sx={{ bgcolor: "#3A3939" }}
+            sx={{ bgcolor: theme.palette.background.light }}
           />
 
           <Skeleton
             animation='wave'
             variant='text'
-            sx={{ bgcolor: "#3A3939" }}
+            sx={{ bgcolor: theme.palette.background.light }}
           />
           <Skeleton
             animation='wave'
             variant='text'
-            sx={{ bgcolor: "#3A3939" }}
+            sx={{ bgcolor: theme.palette.background.light }}
           />
         </div>
       ) : (
@@ -55,8 +55,7 @@ const ChannelCard = ({ channelDetail, marginTop }) => {
               justifyContent: "center",
               textAlign: "center",
               color: "#fff",
-            }}
-          >
+            }}>
             <CardMedia
               image={channelDetail?.thumbnail || channelDetail?.avatarUrl}
               alt={channelDetail?.name}
@@ -75,8 +74,7 @@ const ChannelCard = ({ channelDetail, marginTop }) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-              }}
-            >
+              }}>
               {channelDetail?.name.slice(0, 20)}
               {channelDetail?.verified && (
                 <CheckCircle sx={{ fontSize: 16, color: "gray", ml: "5px" }} />

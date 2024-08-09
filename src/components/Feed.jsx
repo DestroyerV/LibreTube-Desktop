@@ -4,6 +4,7 @@ import { SideBar, Videos } from "./";
 import { fetchFromAPI } from "../services/fetchFromAPI";
 import { MyContext } from "../App";
 import useProgressBar from "../hooks/useProgressBar";
+import theme from "../../theme";
 
 const Feed = () => {
   const [selectedCategory, setSelectedCategory] = useState("Trending");
@@ -27,7 +28,7 @@ const Feed = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCategory]);
 
-useProgressBar();
+  useProgressBar();
 
   return (
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
@@ -36,8 +37,7 @@ useProgressBar();
           height: { sm: "auto", md: "92vh" },
           borderRight: "1px solid #3d3d3d",
           px: { sx: 0, md: 2 },
-        }}
-      >
+        }}>
         <SideBar
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
@@ -48,9 +48,9 @@ useProgressBar();
           variant='h4'
           fontWeight='bold'
           mb={2}
-          sx={{ color: "white" }}
-        >
-          {selectedCategory} <span style={{ color: "#ff7691" }}>videos</span>
+          sx={{ color: "white" }}>
+          {selectedCategory}{" "}
+          <span style={{ color: theme.palette.primary.main }}>videos</span>
         </Typography>
         <Videos videos={videos} />
       </Box>

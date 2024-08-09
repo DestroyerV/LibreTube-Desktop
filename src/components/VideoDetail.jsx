@@ -7,6 +7,7 @@ import { fetchFromAPI } from "../services/fetchFromAPI";
 import { Player } from "./VideoPlayer/Player";
 import formatNumber from "../utils/formatNumber";
 import { MyContext } from "../App";
+import theme from "../../theme";
 
 const VideoDetail = () => {
   const [videoDetail, setVideoDetail] = useState(null);
@@ -26,8 +27,7 @@ const VideoDetail = () => {
     <Box minHeight='95vh'>
       <Stack
         direction={{ xs: "column", md: "row" }}
-        sx={{ overflowY: "auto", height: "90vh" }}
-      >
+        sx={{ overflowY: "auto", height: "90vh" }}>
         <Box flex={1}>
           <Box
             sx={{
@@ -36,15 +36,14 @@ const VideoDetail = () => {
               borderRadius: "26px",
               overflow: "hidden",
               // paddingX : {xs : "5px", md : "0px"},
-            }}
-          >
+            }}>
             {!videoDetail ? (
               <Skeleton
                 animation='wave'
                 variant='rounded'
                 width='100%'
                 sx={{
-                  bgcolor: "#3A3939",
+                  bgcolor: theme.palette.background.light,
                   height: { xs: "200px", sm: "400px", md: "500px" },
                 }}
               />
@@ -57,13 +56,12 @@ const VideoDetail = () => {
               color='#fff'
               fontWeight='bold'
               py={1}
-              sx={{ fontSize: { xs: "16px", sm: "18px", md: "20px" } }}
-            >
+              sx={{ fontSize: { xs: "16px", sm: "18px", md: "20px" } }}>
               {!videoDetail ? (
                 <Skeleton
                   animation='wave'
                   variant='text'
-                  sx={{ bgcolor: "#3A3939" }}
+                  sx={{ bgcolor: theme.palette.background.light }}
                 />
               ) : (
                 videoDetail?.title
@@ -73,15 +71,14 @@ const VideoDetail = () => {
               direction='row'
               justifyContent='space-between'
               sx={{ color: "#fff" }}
-              alignItems='center'
-            >
+              alignItems='center'>
               {!videoDetail ? (
                 <Skeleton
                   animation='wave'
                   variant='circular'
                   width={40}
                   height={40}
-                  sx={{ bgcolor: "#3A3939" }}
+                  sx={{ bgcolor: theme.palette.background.light }}
                 />
               ) : (
                 <Link to={`${videoDetail?.uploaderUrl}`}>
@@ -109,7 +106,7 @@ const VideoDetail = () => {
                       animation='wave'
                       variant='text'
                       width={80}
-                      sx={{ bgcolor: "#3A3939" }}
+                      sx={{ bgcolor: theme.palette.background.light }}
                     />
                   ) : (
                     formatNumber(videoDetail?.views) + " views"
@@ -121,7 +118,7 @@ const VideoDetail = () => {
                       animation='wave'
                       variant='text'
                       width={80}
-                      sx={{ bgcolor: "#3A3939" }}
+                      sx={{ bgcolor: theme.palette.background.light }}
                     />
                   ) : (
                     formatNumber(videoDetail?.likes) + " likes"
@@ -135,8 +132,7 @@ const VideoDetail = () => {
           px={2}
           py={{ md: 1, xs: 5 }}
           justifyContent='center'
-          alignItems='center'
-        >
+          alignItems='center'>
           <Videos
             videos={videoDetail?.relatedStreams}
             direction='column'

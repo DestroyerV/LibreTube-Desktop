@@ -14,6 +14,7 @@ import { CheckCircle } from "@mui/icons-material";
 import formatNumber from "../utils/formatNumber";
 import formatTime from "../utils/formatTime";
 import React from "react";
+import theme from "../../theme";
 
 const VideoCard = ({ video, avatarUrl }) => {
   return (
@@ -22,7 +23,7 @@ const VideoCard = ({ video, avatarUrl }) => {
         width: { xs: "100%", sm: "358px", md: "370px" },
         boxShadow: "none",
         borderRadius: "1px",
-        backgroundColor: "#161316",
+        backgroundColor: theme.palette.background.main,
         position: "relative",
       }}>
       {!video ? (
@@ -31,7 +32,7 @@ const VideoCard = ({ video, avatarUrl }) => {
           variant='rounded'
           width='100%'
           height={200}
-          sx={{ bgcolor: "#3A3939", borderRadius: "12px" }}
+          sx={{ bgcolor: theme.palette.background.light, borderRadius: "12px" }}
         />
       ) : (
         <Link to={`/video/${video?.url.split("=")[1]}`}>
@@ -63,7 +64,7 @@ const VideoCard = ({ video, avatarUrl }) => {
       )}
       <CardContent
         sx={{
-          backgroundColor: "#161316",
+          backgroundColor: theme.palette.background.main,
           height: "106px",
           display: "flex",
           gap: "15px",
@@ -74,7 +75,7 @@ const VideoCard = ({ video, avatarUrl }) => {
             variant='circular'
             width={36}
             height={36}
-            sx={{ bgcolor: "#3A3939" }}
+            sx={{ bgcolor: theme.palette.background.light }}
           />
         ) : (
           <Link to={video?.uploaderUrl}>
@@ -93,11 +94,14 @@ const VideoCard = ({ video, avatarUrl }) => {
                 <Skeleton
                   animation='wave'
                   width={200}
-                  sx={{ bgcolor: "#3A3939" }}
+                  sx={{ bgcolor: theme.palette.background.light }}
                 />
               </Typography>
               <Typography variant='subtitle2'>
-                <Skeleton animation='wave' sx={{ bgcolor: "#3A3939" }} />
+                <Skeleton
+                  animation='wave'
+                  sx={{ bgcolor: theme.palette.background.light }}
+                />
               </Typography>
             </React.Fragment>
           ) : (

@@ -33,3 +33,14 @@ export const categories = [
 
 export const demoProfilePicture =
   "http://dergipark.org.tr/assets/app/images/buddy_sample.png";
+
+export const filterButtons = [
+  { name: "All", filter: "all" },
+  { name: "Videos", filter: "videos" },
+  { name: "Channels", filter: "channels" },
+  // { name: "Playlists", filter: "playlists" },
+  // { name: "YT Music Songs", filter: "music_songs" },
+  { name: "YT Music Videos", filter: "music_videos" },
+  // { name: "YT Music Playlists", filter: "yt-music-playlists" },
+  // { name: "YT Music Artists", filter: "music_artists" },
+];

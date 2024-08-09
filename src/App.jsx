@@ -9,6 +9,7 @@ import {
   Page404,
 } from "./components";
 import { createContext, useState } from "react";
+import theme from "./theme";
 
 export const MyContext = createContext({});
 export function App() {
@@ -70,7 +71,7 @@ export function App() {
       <>
         <Box
           sx={{
-            backgroundColor: "#161316",
+            backgroundColor: theme.palette.background.main,
             height: "100vh",
             overflow: { md: "hidden" },
           }}>
