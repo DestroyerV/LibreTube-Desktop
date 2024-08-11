@@ -106,7 +106,7 @@ const VideoCard = ({ video, avatarUrl }) => {
             </React.Fragment>
           ) : (
             <React.Fragment>
-              <Link to={`/video/${video?.url}`}>
+              <Link to={`/video/${video?.url.split("=")[1]}`}>
                 <Typography
                   variant='subtitle1'
                   fontWeight='bold'
