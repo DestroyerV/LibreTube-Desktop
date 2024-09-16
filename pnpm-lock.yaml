@@ -27,8 +27,8 @@ importers:
         specifier: ^1.0.10
         version: 1.0.12(react@18.3.1)
       '@vidstack/react':
-        specifier: ^1.11.30
-        version: 1.11.30(@types/react@18.3.3)(react@18.3.1)
+        specifier: ^1.12.10
+        version: 1.12.10(@types/react@18.3.3)(react@18.3.1)
       axios:
         specifier: ^1.6.8
         version: 1.7.3
@@ -383,11 +383,11 @@ packages:
   '@floating-ui/core@1.6.5':
     resolution: {integrity: sha512-8GrTWmoFhm5BsMZOTHeGD2/0FLKLQQHvO/ZmQga4tKempYRLz8aqJGqXVuQgisnMObq2YZ2SgkwctN1LOOxcqA==}
 
-  '@floating-ui/dom@1.6.8':
-    resolution: {integrity: sha512-kx62rP19VZ767Q653wsP1XZCGIirkE09E0QUGNYTM/ttbbQHqcGPdSfWFxUyyNLc/W6aoJRBajOSXhP6GXjC0Q==}
+  '@floating-ui/dom@1.6.11':
+    resolution: {integrity: sha512-qkMCxSR24v2vGkhYDo/UzxfJN3D4syqSjyuTFz6C7XcpU1pASPRieNI0Kj5VP3/503mOfYiGY891ugBX1GlABQ==}
 
-  '@floating-ui/utils@0.2.5':
-    resolution: {integrity: sha512-sTcG+QZ6fdEUObICavU+aB3Mp8HY4n14wYHdxK4fXjPmv3PXZZeY5RaguJmGyeH/CJQhX3fqKUtS4qc1LoHwhQ==}
+  '@floating-ui/utils@0.2.8':
+    resolution: {integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==}
 
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
@@ -674,8 +674,8 @@ packages:
       vue-router:
         optional: true
 
-  '@vidstack/react@1.11.30':
-    resolution: {integrity: sha512-Y9Xx4Y+bXRtlZKR+PfUGl6UX0rH6Lui5sHzdh0Jj4MZFCWv+hM9h5BaV2k97vLGEYpGDl/11imENCrHFWgR3HA==}
+  '@vidstack/react@1.12.10':
+    resolution: {integrity: sha512-ShdDXh3HgPBz2L8TFYGokFBCJBeZud8whQFGYUJgKSDWDfLUiJwHLopvJave/3fBVD9EQGdcFHr6B/faqiXK7w==}
     engines: {node: '>=18'}
     peerDependencies:
       '@types/react': ^18.0.0
@@ -2029,14 +2029,14 @@ snapshots:
 
   '@floating-ui/core@1.6.5':
     dependencies:
-      '@floating-ui/utils': 0.2.5
+      '@floating-ui/utils': 0.2.8
 
-  '@floating-ui/dom@1.6.8':
+  '@floating-ui/dom@1.6.11':
     dependencies:
       '@floating-ui/core': 1.6.5
-      '@floating-ui/utils': 0.2.5
+      '@floating-ui/utils': 0.2.8
 
-  '@floating-ui/utils@0.2.5': {}
+  '@floating-ui/utils@0.2.8': {}
 
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
@@ -2266,9 +2266,9 @@ snapshots:
     optionalDependencies:
       react: 18.3.1
 
-  '@vidstack/react@1.11.30(@types/react@18.3.3)(react@18.3.1)':
+  '@vidstack/react@1.12.10(@types/react@18.3.3)(react@18.3.1)':
     dependencies:
-      '@floating-ui/dom': 1.6.8
+      '@floating-ui/dom': 1.6.11
       '@types/react': 18.3.3
       media-captions: 1.0.4
       react: 18.3.1
